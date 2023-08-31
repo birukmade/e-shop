@@ -3,15 +3,27 @@ const getError = require("../../helpers");
 const signinForm = ({ errors }) => {
   return layout({
     content: `
-  <div>
-    <form method="post">
-        <input type="" name="email" placeholder="email" /> 
-        ${getError(errors, "email")}
-        <input type="password" name="password" placeholder="password" /> 
-        ${getError(errors, "password")}
-        <button type="submit">Sign in</button>
-    </form>
-  </div>
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-one-quarter">
+          <form method="POST">
+            <h1 class="title">Sign in</h1>
+            <div class="field">
+              <label class="label">Email</label>
+              <input required class="input" placeholder="Email" name="email" />
+              <p class="help is-danger">${getError(errors, "email")}</p>
+            </div>
+            <div class="field">
+              <label class="label">Password</label>
+              <input required class="input" placeholder="Password" name="password" type="password" />
+              <p class="help is-danger">${getError(errors, "password")}</p>
+            </div>
+            <button class="button is-primary">Submit</button>
+          </form>
+          <a href="/signup">Need an account? Sign Up</a>
+        </div>
+      </div>
+    </div>
   `,
   });
 };
