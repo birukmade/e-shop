@@ -1,6 +1,7 @@
 const express = require("express");
-const { validationResult, body } = require("express-validator");
+
 const usersRepo = require("../../../repository/users");
+const { handleErrors } = require("./middlewares");
 const signupForm = require("../../../views/admin/auth/signup");
 const signinForm = require("../../../views/admin/auth/signin");
 const {
@@ -10,7 +11,6 @@ const {
   validateEamilisRegistered,
   validatePasswordForEmail,
 } = require("./validators");
-const { error } = require("console");
 
 const router = express.Router();
 router.get("/signup", (req, res) => {
@@ -22,12 +22,9 @@ router.post(
   validateEmail,
   validatePassowrd,
   validateConfirmPassword,
+  handleErrors(signupForm),
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.send(signupForm({ req, errors }));
-    }
-    const { email, password, confirmPassword } = req.body;
+    const { email, password } = req.body;
 
     const user = await usersRepo.create({ email, password });
     req.session.userId = user.id;
@@ -48,11 +45,8 @@ router.post(
   "/signin",
   validateEamilisRegistered,
   validatePasswordForEmail,
+  handleErrors(signinForm),
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.send(signinForm({ errors }));
-    }
     const { email } = req.body;
     const userFound = await usersRepo.getOneBy({ email });
 
