@@ -52,4 +52,9 @@ module.exports = {
         throw new Error("incorrect password");
       }
     }),
+  validateTitle: body("title")
+    .trim()
+    .isLength({ min: 3, max: 20 })
+    .withMessage("must be between 3 and 20 characters"),
+  validatePrice: body("price").trim().toFloat().isFloat({ min: 0.1 }),
 };
