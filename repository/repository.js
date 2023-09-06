@@ -54,7 +54,7 @@ class Repository {
   // Define an async method that returns a record with a given ID or undefined if not found
   async getOne(id) {
     const records = await this.getAll();
-    return records.filter((record) => record.id === id);
+    return records.find((record) => record.id === id);
   }
 
   // Define an async method that deletes a record with a given ID from the file
