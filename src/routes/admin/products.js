@@ -4,12 +4,16 @@ const multer = require("multer");
 const { handleErrors } = require("./middlewares");
 const producsRepo = require("../../../repository/products");
 const productForm = require("../../../views/admin/products/new");
+const productsList = require("../../../views/admin/products/index");
 const { validateTitle, validatePrice } = require("./validators");
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
-router.get("/admin/products", (req, res) => {});
+router.get("/admin/products", async (req, res) => {
+  const products = await producsRepo.getAll();
+  res.send(productsList({ products }));
+});
 router.get("/admin/products/new", (req, res) => {
   res.send(productForm({}));
 });
