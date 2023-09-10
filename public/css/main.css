@@ -11,6 +11,11 @@ body {
   padding: 5px;
 }
 
+.product-card figure img {
+  height: 200px; /* added */
+  border-radius: 10px; /* added */
+}
+
 .navbar ul.social {
   display: flex;
 }
@@ -63,9 +68,20 @@ body {
   padding: 20px;
 }
 
+.product-card {
+  border-radius: 10px; /* added */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* added */
+}
+
+.product-card .card-content {
+  padding: 10px; /* added */
+}
+
 .product-card .card-footer {
   justify-content: center;
+  padding: 10px; /* added */
 }
+
 .product-card .card-footer form {
   display: block;
   width: 100%;
@@ -97,29 +113,27 @@ body {
 }
 
 .product-card .card-footer button {
+  border-radius: 10px; /* added */
   border: none;
   width: 100%;
   height: 50px;
+  background-color: var(--primary); /* changed */
+  color: var(--white); /* changed */
 }
-
 .product-card .card-footer button i {
   margin-right: 10px;
 }
-
 #cart .cart-item h3 {
   margin: 0;
 }
-
 .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .quantity {
   position: relative;
 }
-
 .quantity:before {
   content: "#";
   position: absolute;
@@ -131,15 +145,12 @@ body {
   align-items: center;
   color: gray;
 }
-
 .cart-right .field {
   margin-bottom: 0 !important;
 }
-
 .price {
   margin: 0 20px;
 }
-
 .cart-right {
   display: flex;
   align-items: center;

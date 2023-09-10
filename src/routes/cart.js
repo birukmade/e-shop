@@ -23,7 +23,7 @@ router.post("/cart/products", async (req, res) => {
   }
 
   await cartRepo.update(cart.id, { items: cart.items });
-  res.send("added to cart");
+  res.redirect("/");
 });
 
 router.get("/cart", async (req, res) => {
